@@ -1,6 +1,6 @@
-package com.ll.sbb.question;
+package com.ll.sbb.answer;
 
-import com.ll.sbb.answer.Answer;
+import com.ll.sbb.question.Question;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -8,7 +8,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Setter
 @Getter
@@ -17,14 +16,11 @@ import java.util.List;
 @Builder
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Question {
+public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.PRIVATE)
     private Integer id;
-
-    @Column(length = 200)
-    private String subject;
 
     @Column(columnDefinition = "TEXT")
     private String content;
@@ -37,6 +33,6 @@ public class Question {
     @Setter(AccessLevel.PRIVATE)
     private LocalDateTime modifiedAt;
 
-    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
-    private List<Answer> answerList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Question question;
 }
