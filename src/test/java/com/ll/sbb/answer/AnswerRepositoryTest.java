@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -33,5 +34,14 @@ public class AnswerRepositoryTest {
         a.setContent("네 자동으로 생성됩니다.");
         a.setQuestion(q);
         this.answerRepository.save(a);
+    }
+
+    @Test
+    @DisplayName("findById()")
+    void findByIdTest() {
+        Optional<Answer> oa = this.answerRepository.findById(1);
+        assertTrue(oa.isPresent());
+        Answer a = oa.get();
+        assertEquals(2, a.getQuestion().getId());
     }
 }
