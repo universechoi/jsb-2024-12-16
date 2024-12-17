@@ -7,7 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -18,7 +21,6 @@ class SbbApplicationTests {
 
     @Test
     @DisplayName("questionRepository.save()")
-    @Transactional
     void saveTest() {
         Question q1 = new Question();
         q1.setSubject("sbb가 무엇인가요?");
@@ -29,5 +31,15 @@ class SbbApplicationTests {
         q2.setSubject("스프링 부트 모델 질문입니다.");
         q2.setContent("id는 자동으로 생성되나요?");
         this.questionRepository.save(q2);
+    }
+
+    @Test
+    @DisplayName("findAll()")
+    void findAllTest() {
+        List<Question> all = this.questionRepository.findAll();
+        assertEquals(2, all.size());
+
+        Question q = all.get(0);
+        assertEquals("sbb가 무엇인가요?", q.getSubject());
     }
 }
