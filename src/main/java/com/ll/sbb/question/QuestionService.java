@@ -13,7 +13,7 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
-    public Question save(String Subject, String content) {
+    public Question create(String Subject, String content) {
         Question question = new Question();
         question.setSubject(Subject);
         question.setContent(content);

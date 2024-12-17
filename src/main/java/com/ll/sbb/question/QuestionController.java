@@ -35,7 +35,7 @@ public class QuestionController {
 
     @PostMapping("/create")
     public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
-        this.questionService.save(subject, content);
+        this.questionService.create(subject, content);
         return "redirect:/question/list";
     }
 }

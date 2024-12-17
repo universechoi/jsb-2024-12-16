@@ -19,9 +19,9 @@ public class InitData {
             if (questionService.count() > 0) {
                 return ;
             }
-            Question question1 = questionService.save("초기데이터1", "내용1입니다.");
-            Question question2 = questionService.save("초기데이터2", "내용2입니다.");
-            Question question3 = questionService.save("초기데이터3", "내용3입니다.");
+            Question question1 = questionService.create("초기데이터1", "내용1입니다.");
+            Question question2 = questionService.create("초기데이터2", "내용2입니다.");
+            Question question3 = questionService.create("초기데이터3", "내용3입니다.");
         };
     }
 }
