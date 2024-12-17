@@ -13,6 +13,16 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
+    public Question save(String Subject, String content) {
+        Question question = new Question();
+        question.setSubject(Subject);
+        question.setContent(content);
+
+        this.questionRepository.save(question);
+
+        return question;
+    }
+
     public List<Question> getList() {
         return this.questionRepository.findAll();
     }
@@ -24,5 +34,9 @@ public class QuestionService {
         } else {
             throw new DataNotFoundException("question not found");
         }
+    }
+
+    public long count() {
+        return this.questionRepository.count();
     }
 }
