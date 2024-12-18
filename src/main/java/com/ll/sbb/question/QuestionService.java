@@ -13,10 +13,8 @@ public class QuestionService {
 
     private final QuestionRepository questionRepository;
 
-    public Question create(String Subject, String content) {
-        Question question = new Question();
-        question.setSubject(Subject);
-        question.setContent(content);
+    public Question create(String subject, String content) {
+        Question question = Question.builder().subject(subject).content(content).build();
 
         this.questionRepository.save(question);
 

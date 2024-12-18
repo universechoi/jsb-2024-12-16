@@ -11,9 +11,7 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     public void create(Question question, String content) {
-        Answer answer = new Answer();
-        answer.setQuestion(question);
-        answer.setContent(content);
+        Answer answer = Answer.builder().question(question).content(content).build();
 
         this.answerRepository.save(answer);
     }
