@@ -1,6 +1,5 @@
 package com.ll.sbb.initData;
 
-import com.ll.sbb.question.Question;
 import com.ll.sbb.question.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationRunner;
@@ -19,9 +18,11 @@ public class InitData {
             if (questionService.count() > 0) {
                 return ;
             }
-            Question question1 = questionService.create("초기데이터1", "내용1입니다.");
-            Question question2 = questionService.create("초기데이터2", "내용2입니다.");
-            Question question3 = questionService.create("초기데이터3", "내용3입니다.");
+            for (int i = 0; i <= 300; i++) {
+                String subject = String.format("테스트 데이터입니다.:[%03d]", i);
+                String content = "내용 없음";
+                this.questionService.create(subject, content);
+            }
         };
     }
 }
