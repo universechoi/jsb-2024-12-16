@@ -46,4 +46,10 @@ public class QuestionService {
     public long count() {
         return this.questionRepository.count();
     }
+
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        this.questionRepository.save(question);
+    }
 }
