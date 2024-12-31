@@ -34,4 +34,8 @@ public class AnswerService {
         answer.setContent(content);
         this.answerRepository.save(answer);
     }
+
+    public void delete(Answer answer) {
+        this.answerRepository.delete(answer);
+    }
 }
